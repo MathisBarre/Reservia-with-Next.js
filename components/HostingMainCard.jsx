@@ -1,24 +1,35 @@
-export default function HostingMainCard(props) {
+import { useEffect } from "react"
+
+export default function HostingMainCard({imgUrl, title, price, note = 4}) {
+
+  const stars = []
+
+  // Add the stars corresponding to the note
+  for (let i = 0; i < note; i++) {
+    stars.push(<Star key={i} isActivated={true} />)
+  }
+
+  // Add empty stars
+  for (let i = note; i < 5; i++) {
+    stars.push(<Star key={i} isActivated={false} />)
+  }
+
   return (
     <article className="hostingMainCard">
       <a href="#">
         <figure className="hostingMainCardFigure">
-          <img className="hostingMainCardFigureImg" src={props.imgUrl} alt="Chambre avec un lit superposé avec une fenêtre vu sur la ville." />
+          <img className="hostingMainCardFigureImg" src={imgUrl} alt="Chambre avec un lit superposé avec une fenêtre vu sur la ville." />
           <figcaption className="hostingMainCardFigureCaption">
-            <h3 className="hostingMainCardFigureCaptionTitle">{props.title}</h3>
+            <h3 className="hostingMainCardFigureCaptionTitle">{title}</h3>
           </figcaption>
         </figure>
         <p className="hostingMainCardDesc">
           Nuit à partir de <strong className="hostingMainCardDescPrice">
-            {props.price}
+            {price}
           </strong>
         </p>
         <div className="hostingMainCardGrade">
-          <Star isActivated="true"/>
-          <Star isActivated="true"/>
-          <Star isActivated="true"/>
-          <Star isActivated="true"/>
-          <Star isActivated="false"/>
+          {stars}
         </div>
       </a>
     </article>

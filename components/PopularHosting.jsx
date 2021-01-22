@@ -1,4 +1,17 @@
-export default function PopularHosting({ imgUrl, title, price}) {
+export default function PopularHosting({ imgUrl, title, price, note = 4}) {
+
+  const stars = []
+
+  // Add the stars corresponding to the note
+  for (let i = 0; i < note; i++) {
+    stars.push(<Star key={i} isActivated={true} />)
+  }
+
+  // Add empty stars
+  for (let i = note; i < 5; i++) {
+    stars.push(<Star key={i} isActivated={false} />)
+  }
+
   return (
     <article className="hostingMainCard hostingPopularCard">
       <a className="hostingPopularWrapcontent" href="#">
@@ -10,14 +23,14 @@ export default function PopularHosting({ imgUrl, title, price}) {
           <p className="hostingMainCardDesc">Nuit à partir de <strong className="hostingMainCardDescPrice">{ price }</strong></p>
           <div className="hostingPopularWrapcontentContentWhitespace" />
           <div className="hostingMainCardGrade">
-            <i className="fas fa-star hostingMainCardGradeIcon" data-active="true" />
-            <i className="fas fa-star hostingMainCardGradeIcon" data-active="true" />
-            <i className="fas fa-star hostingMainCardGradeIcon" data-active="true" />
-            <i className="fas fa-star hostingMainCardGradeIcon" data-active="true" />
-            <i className="fas fa-star hostingMainCardGradeIcon" data-active="true" />
+            { stars }
           </div>
         </div>
       </a>
     </article>
   )
+}
+
+function Star(props) {
+  return <i className="fas fa-star hostingMainCardGradeIcon" data-active={props.isActivated} />
 }

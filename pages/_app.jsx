@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Reservia - Openclassroom</title>
-        <script src="https://kit.fontawesome.com/406da18a0b.js" crossorigin="anonymous" defer ></script>
+        <script src="https://kit.fontawesome.com/406da18a0b.js" crossrigin="anonymous" defer />
       </Head>
       <Header/>
       <Component {...pageProps} />
